@@ -16,13 +16,20 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v1
 
+    - name: Create bin directory
+      run: |
+        mkdir -p ${{ runner.workspace }}/bin 
+
     - name: Get dependencies
       run: |
         go get -v -t -d ./...
         if [ -f Gopkg.toml ]; then
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            dep ensure
+            ${{ runner.workspace }}/bin/dep ensure
         fi
 
     - name: Build
+      env:
+        GOPATH: ${{ runner.workspace }}
+        GO111MODULE: off
       run: make
