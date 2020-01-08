@@ -21,6 +21,8 @@ jobs:
         mkdir -p /home/runner/go/bin 
 
     - name: Get dependencies
+      env:
+        GOPATH: /home/runner/go/:${{ runner.workspace }}
       run: |
         go get -v -t -d ./...
         if [ -f Gopkg.toml ]; then
