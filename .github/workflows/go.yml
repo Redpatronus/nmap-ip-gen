@@ -18,7 +18,7 @@ jobs:
 
     - name: Create bin directory
       run: |
-        mkdir -p ${{ runner.workspace }}/bin 
+        mkdir -p /home/runner/go/bin 
 
     - name: Get dependencies
       run: |
