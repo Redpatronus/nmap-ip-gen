@@ -16,7 +16,7 @@ func main() {
 	for _, section := range p.Ini.Cfg.Sections() {
 		p.Ini.SectionName = section.Name()
 
-		if section.Name() == ini.DEFAULT_SECTION || section.Name() == "general" {
+		if section.Name() == ini.DEFAULT_SECTION {
 			continue
 		}
 
@@ -32,5 +32,5 @@ func main() {
 	}
 	output.Close(p)
 
-	log.Printf("Nmap IP list was generated to: %s\n", p.Ini.Cfg.Section("general").Key("output").String())
+	log.Printf("Nmap IP list was generated to: %s\n", p.OutputFile.Name())
 }

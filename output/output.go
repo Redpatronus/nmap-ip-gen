@@ -9,7 +9,7 @@ import (
 
 func Open(p *parser.Data) {
 	var err error
-	filePath := p.Ini.Cfg.Section("general").Key("output").String()
+	filePath := p.Cmd.OutputPath
 	p.OutputFile, err = os.Create(filePath)
 
 	if err != nil {
